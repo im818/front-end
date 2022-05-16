@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#00003f',
     color: 'white',
     fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 20,
   }
 })
 

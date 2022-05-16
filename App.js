@@ -14,6 +14,11 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexWrap: 'wrap',
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  button: {
+    alignItems: "center"
   }
 })
 
@@ -28,32 +33,18 @@ const App = () => {
   const [gyroY, setGyroY] = useState();
   const [gyroZ, setGyroZ] = useState();
 
+
+  // this function is called on clickin the button Update Graph
+  // it submits an HTTP request to the board, which gathers data and sends over as JSON
   async function updateChart() {
-    return fetch('http://192.168.4.1/acceleration')
+    return fetch('http://192.168.4.1/record-stroke')
       .then((response) => response.json())
       .then((json) => {
-        setChartData(json.accX);
-        console.log(data);
+        console.log(json["acceleration_x"][0]);
       })
       .catch((error) => {
         console.error(error);
       })
-  }
-
-  const state = {
-    labels: ['January', 'February', 'March',
-      'April', 'May'],
-    datasets: [
-      {
-        label: 'Rainfall',
-        fill: false,
-        lineTension: 0.5,
-        backgroundColor: 'rgba(75,192,192,1)',
-        borderColor: 'rgba(0,0,0,1)',
-        borderWidth: 2,
-        data: [65, 59, 80, 81, 56]
-      }
-    ]
   }
 
   var ws = new WebSocket('ws://192.168.4.1:81');
@@ -83,9 +74,12 @@ const App = () => {
         <Datapoint number={accX} />
         <Datapoint number={accY} />
         <Datapoint number={accZ} />
+      </View>
+      <View
+        style={styles.button}>
         <Button
           title="Update Graph"
-          onPress={updateChart()} />
+          onPress={() => updateChart()} />
       </View>
     </View>
   );
