@@ -40,6 +40,7 @@ const App = () => {
     return fetch('http://192.168.4.1/record-stroke')
       .then((response) => response.json())
       .then((json) => {
+        // for debugging purposes, this is how to access a single reading of the acceleration in x.
         console.log(json["acceleration_x"][0]);
       })
       .catch((error) => {
