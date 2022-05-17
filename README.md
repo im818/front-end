@@ -1,3 +1,6 @@
+Note for development: updated code for ESP32 board under following repo
+https://github.com/im818/ESP32
+
 # Roadmap for the project
 
 ## Stage 1 - MVP
